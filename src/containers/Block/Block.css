@@ -1,0 +1,9 @@
+.Block {
+    background-color: rgb(150, 136, 118);
+    height: 300px;
+    margin: 10px;
+    flex: 1;
+    max-width: 600px;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px;
+}

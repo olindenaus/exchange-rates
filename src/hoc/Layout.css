@@ -1,0 +1,12 @@
+.Layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.Content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
