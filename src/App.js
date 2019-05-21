@@ -4,27 +4,28 @@ import Layout from './hoc/Layout';
 import Block from './containers/Block/Block';
 import Button from './components/UI/Button/Button';
 import TransferPanel from './components/TransferPanel/TransferPanel';
-import Axios from 'axios';
+import axios from './config/Axios';
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       options: [],
       cachedData: null,
-      leftBlockCurrency: 'APN',
+      leftBlockCurrency: 'EUR',
       rightBlockCurrency: '',
+      rightBlockValues: [],
+      result: 0,
     }
   }
 
   getData = () => {
-    Axios.get('https://api.exchangeratesapi.io/latest')
+    axios.get(`/latest`)
       .then(result => {
         let tempOptions = [];
-        for (var country in result.data.rates) {
-          tempOptions.push(country);
-        }
-        this.setState({ options: tempOptions, cachedData: result.data });
-        console.log(result.data);
+        tempOptions = this.pareseObjectToArray(result.data);
+        tempOptions.push('EUR');
+        this.getSpecific('EUR');
+        this.setState({ options: tempOptions, cachedData: result.data.rates });
       }).catch(error => {
         console.log(error);
       }).finally(() => {
@@ -32,31 +33,45 @@ class App extends Component {
       });
   }
 
+  pareseObjectToArray = (data) => {
+    let tempOptions = [];
+    for (var country in data.rates) {
+      tempOptions.push(country);
+    }
+    return tempOptions;
+  }
+
   componentWillMount() {
+    console.log('Will Mount');
     this.getData();
   }
 
-  onSelectChanged = (id) => {
-    console.log(id);
-    let callback;
-    if (id === 1) {
-      callback = event => this.setState({ leftBlockCurrency: event.target.value });
-    } else {
-      callback = event => this.setState({ rightBlockCurrency: event.target.value });
-    }
-    console.log(callback);
-    return callback;
-    // let value = event.target.value;
-    // let rate = this.state.cachedData.rates[value];
-    // console.log(rate);
+  getSpecific = (currency) => {
+    axios.get(`/latest?base=${currency}`)
+      .then(result => {
+        console.log('For specific', currency, result.data.rates);
+        let tempOptions = this.pareseObjectToArray(result.data)        
+        this.setState({ rightBlockValues: tempOptions, cachedData: result.data.rates});
+      })
   }
 
   leftSelect = (event) => {
-    this.setState({ leftBlockCurrency: event.target.value });
+    let value = event.target.value;
+    this.setState({ leftBlockCurrency: value });
+    this.getSpecific(value);
   }
 
   rightSelect = (event) => {
     this.setState({ rightBlockCurrency: event.target.value });
+  }
+
+  calculateLeftToRight = () => {
+    let leftCurrency = this.state.leftBlockCurrency;
+    let rightCurrency = this.state.rightBlockCurrency;
+    let rates = this.state.cachedData;
+    let rate = rates[rightCurrency];
+    let result = 1000*rate;
+    this.setState({result});
   }
 
   render() {
@@ -68,12 +83,14 @@ class App extends Component {
           <Block
             currencies={this.state.cachedData.rates}
             options={this.state.options}
-            currencyChanged={this.leftSelect/*(event) => this.onSelectChanged(1)(event)*/}
+            currencyChanged={this.leftSelect}
           />
-          <label>{this.state.leftBlockCurrency}</label>
-          <TransferPanel />
+          <label>{this.state.result}</label>
+          <TransferPanel 
+            leftToRight = {this.calculateLeftToRight}
+          />
           <Block
-            currencies={this.state.cachedData.rates}
+            currencies={this.state.rightBlockValues}
             options={this.state.options}
             currencyChanged={this.rightSelect}
           />

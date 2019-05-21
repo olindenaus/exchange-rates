@@ -7,7 +7,7 @@ const transferPanel = (props) => {
 
     return (
         <div className="TransferPanel">
-        <Button text="Przelicz -->"/>
+        <Button text="Przelicz -->" clicked={props.leftToRight}/>
         <Button text="Przelicz <--"/>
         </div>
     )

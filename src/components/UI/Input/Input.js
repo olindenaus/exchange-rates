@@ -26,7 +26,6 @@ const input = (props) => {
             //  className={}
             />;
     }
-    console.log('Inside input', props);
     return (
         <div className="Input">
             <label className="Label">
