@@ -2,24 +2,31 @@ import React from 'react';
 import './Input.css';
 const input = (props) => {
     let inputElement = null;
-
+    let {options} = props;
+    
     switch (props.elementType) {
         case ('input'):
             inputElement = <input>
             </input>
             break;
         case ('select'):
-            inputElement = <select
+            inputElement = (<select
                 // className={}
                 onChange={props.changed}>
-            </select>
+                {options.map(option => (
+                    <option key={option} value={option}>
+                        {option}
+                    </option>
+                ))
+                }
+            </select>);
             break;
         default:
             inputElement = <input
             //  className={}
             />;
     }
-
+    console.log('Inside input', props);
     return (
         <div className="Input">
             <label className="Label">

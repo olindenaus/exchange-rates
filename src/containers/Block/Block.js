@@ -4,29 +4,26 @@ import Input from '../../components/UI/Input/Input';
 import './Block.css';
 
 class Block extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
-    componentDidMount() {
-
-        let {currencies} = this.props;
-        if(currencies){
-            for(var rate in currencies){
-                console.log(rate, ':',currencies[rate]);
-            }
-        }
+    componentWillMount() {
         /* TODO: 
-            -sktóty walut umieścić w selektach
             -on change selektów obsłóżyć
             -doczyszenie kodu z Aoo odnośnie warunku podawania propsów do bloków
-        */ 
+        */
     }
 
     render() {
+        let { currencies } = this.props;
         return (
             <div className="Block">
-                <Input label="Wybierz walutę:" elementType="select">
+                <Input
+                    label="Wybierz walutę:"
+                    elementType="select"
+                    options={this.props.options}
+                    changed={this.props.currencyChanged}>
                 </Input>
                 <Input label="Wartość" elementType="input">
                 </Input>
