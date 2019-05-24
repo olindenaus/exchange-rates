@@ -2,18 +2,22 @@ import React from 'react';
 import './Input.css';
 const input = (props) => {
     let inputElement = null;
-    let {options} = props;
-    
+    let { options } = props;
+
     switch (props.elementType) {
         case ('input'):
-            inputElement = <input>
+            inputElement = <input
+                type='number'
+                onChange={props.changed}
+                value={props.value}>
             </input>
             break;
         case ('select'):
-            inputElement = (<select
+            inputElement = (<select 
+                value={props.value}
                 // className={}
-                onChange={props.changed}>
-                {options.map(option => (
+                onChange={props.changed}>{
+                    options.map(option => (
                     <option key={option} value={option}>
                         {option}
                     </option>

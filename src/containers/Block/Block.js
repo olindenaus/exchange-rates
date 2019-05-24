@@ -10,9 +10,14 @@ const block = (props) => {
                     label="Wybierz walutę:"
                     elementType="select"
                     options={props.options}
-                    changed={props.currencyChanged}>
+                    changed={props.currencyChanged}
+                    value={props.currencyCode}>
                 </Input>
-                <Input label="Wartość" elementType="input">
+                <Input 
+                    label="Wartość" 
+                    elementType="input"
+                    changed={props.currencyValueChanged}
+                    value={props.ammount}>
                 </Input>
             </div>
         );

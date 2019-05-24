@@ -9,7 +9,6 @@ const navigation = (props) => {
         <div className="Navigation">
             <NavigationLink>Home</NavigationLink>
             <NavigationLink>About</NavigationLink>
-            <NavigationLink>Exit</NavigationLink>
         </div>
     )
 };

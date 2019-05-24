@@ -12,9 +12,10 @@ class App extends Component {
       options: [],
       cachedData: null,
       leftBlockCurrency: 'EUR',
-      rightBlockCurrency: '',
-      rightBlockValues: [],
-      result: 0,
+      rightBlockCurrency: 'PLN',
+      rightBlockOptions: [],
+      rightBlockAmmount: 0,
+      leftBlockAmmount: 0
     }
   }
 
@@ -51,7 +52,7 @@ class App extends Component {
       .then(result => {
         console.log('For specific', currency, result.data.rates);
         let tempOptions = this.pareseObjectToArray(result.data)        
-        this.setState({ rightBlockValues: tempOptions, cachedData: result.data.rates});
+        this.setState({ rightBlockOptions: tempOptions, cachedData: result.data.rates});
       })
   }
 
@@ -66,12 +67,31 @@ class App extends Component {
   }
 
   calculateLeftToRight = () => {
-    let leftCurrency = this.state.leftBlockCurrency;
     let rightCurrency = this.state.rightBlockCurrency;
     let rates = this.state.cachedData;
     let rate = rates[rightCurrency];
-    let result = 1000*rate;
-    this.setState({result});
+    let result = this.state.leftBlockAmmount*rate;
+    result = result.toFixed(2);
+    this.setState({rightBlockAmmount: result});
+  }
+
+  calculateRightToLeft = () => {
+    let rightCurrency = this.state.rightBlockCurrency;
+    let rates = this.state.cachedData;
+    let rate = 1/rates[rightCurrency];
+    let result = this.state.rightBlockAmmount*rate;
+    result = result.toFixed(2);
+    this.setState({leftBlockAmmount: result});
+  }
+
+  leftBlockCurrencyValueUpdate = (event) =>{
+    let {value} = event.target;
+    this.setState({leftBlockAmmount: value})
+  }
+
+  rightBlockCurrencyValueUpdate = (event) =>{
+    let {value} = event.target;
+    this.setState({rightBlockAmmount: value})
   }
 
   render() {
@@ -84,15 +104,21 @@ class App extends Component {
             currencies={this.state.cachedData.rates}
             options={this.state.options}
             currencyChanged={this.leftSelect}
-          />
-          <label>{this.state.result}</label>
+            currencyValueChanged={this.leftBlockCurrencyValueUpdate}
+            ammount={this.state.leftBlockAmmount}
+            currencyCode={this.state.leftBlockCurrency}
+            />
           <TransferPanel 
             leftToRight = {this.calculateLeftToRight}
-          />
+            rightToLeft = {this.calculateRightToLeft}
+            />
           <Block
-            currencies={this.state.rightBlockValues}
+            currencies={this.state.rightBlockOptions}
             options={this.state.options}
             currencyChanged={this.rightSelect}
+            currencyValueChanged={this.rightBlockCurrencyValueUpdate}
+            ammount={this.state.rightBlockAmmount}
+            currencyCode={this.state.rightBlockCurrency}
           />
         </React.Fragment>
       );

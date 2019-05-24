@@ -1,9 +1,8 @@
 .Toolbar {
-    min-height: 56px;
     width: 100vw;
     background-color: antiquewhite;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 20px;
     box-sizing: border-box;
 }
