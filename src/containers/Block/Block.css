@@ -4,11 +4,16 @@
     margin: 10px;
     flex: 1;
     max-width: 600px;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 5px 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+}
 
+@media (max-width: 520px) {
+    .Block {
+        min-width: 55vw;
+    }
 }

@@ -1,5 +1,4 @@
 .Input {
-    border: 2px solid black;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -9,5 +8,4 @@
 
 .Label {
     font-weight: bold;
-
 }

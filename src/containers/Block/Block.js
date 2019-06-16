@@ -14,7 +14,7 @@ const block = (props) => {
                     value={props.currencyCode}>
                 </Input>
                 <Input 
-                    label="Wartość" 
+                    label="Wartość:" 
                     elementType="input"
                     changed={props.currencyValueChanged}
                     value={props.ammount}>

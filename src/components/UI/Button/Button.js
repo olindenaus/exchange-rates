@@ -1,11 +1,16 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import './Button.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const button = (props) => {
 
     return (
-        <button onClick={props.clicked}>
+        <Button size="lg" onClick={props.clicked}>
             {props.text}
-        </button>
+            {'  '}
+            <FontAwesomeIcon icon={props.icon} />
+        </Button>
     )
 };
 export default button;
