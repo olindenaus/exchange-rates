@@ -22,7 +22,7 @@ class Home extends Component {
         axios.get(`/latest`)
             .then(result => {
                 let tempOptions = [];
-                tempOptions = this.pareseObjectToArray(result.data);
+                tempOptions = this.parseObjectToArray(result.data);
                 tempOptions.push('EUR');
                 this.getSpecific('EUR');
                 this.setState({ options: tempOptions, cachedData: result.data.rates });
@@ -33,7 +33,7 @@ class Home extends Component {
             });
     }
 
-    pareseObjectToArray = (data) => {
+    parseObjectToArray = (data) => {
         let tempOptions = [];
         for (var country in data.rates) {
             tempOptions.push(country);
@@ -50,7 +50,7 @@ class Home extends Component {
         axios.get(`/latest?base=${currency}`)
             .then(result => {
                 console.log('For specific', currency, result.data.rates);
-                let tempOptions = this.pareseObjectToArray(result.data)
+                let tempOptions = this.parseObjectToArray(result.data)
                 this.setState({ rightBlockOptions: tempOptions, cachedData: result.data.rates });
             })
     }

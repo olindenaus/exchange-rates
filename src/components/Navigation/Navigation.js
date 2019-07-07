@@ -14,6 +14,9 @@ const navigation = (props) => {
                 <NavLink to='/about'>
                     <NavigationLink>About</NavigationLink>
                 </NavLink>
+                <NavLink to='/history'>
+                    <NavigationLink>History</NavigationLink>
+                </NavLink>
             </div>
     )
 };

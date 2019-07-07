@@ -5,6 +5,7 @@ import './App.css';
 import Layout from './hoc/Layout';
 import Home from './containers/Home/Home';
 import About from './containers/About/About';
+import History from './containers/History/History';
 
 class App extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class App extends Component {
           <Layout>
             <Route exact path='/' component={Home} />
             <Route path='/about' component={About} />
+            <Route path='/history' component={History} />
           </Layout>
         </div>
       </Router>
