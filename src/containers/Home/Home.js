@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './Home.css';
 import axios from '../../config/Axios';
 import Block from '../Block/Block';
 import TransferPanel from '../../components/TransferPanel/TransferPanel';
@@ -99,6 +99,7 @@ class Home extends Component {
         if (this.state.cachedData) {
             currencies = (
                 <React.Fragment>
+                    <div className={"Home"}>
                     <Block
                         currencies={this.state.cachedData.rates}
                         options={this.state.options}
@@ -119,6 +120,7 @@ class Home extends Component {
                         ammount={this.state.rightBlockAmmount}
                         currencyCode={this.state.rightBlockCurrency}
                     />
+                    </div>
                 </React.Fragment>
             );
         }

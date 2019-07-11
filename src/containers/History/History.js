@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../../config/Axios';
-
+import './History.css';
 import Plot from '../../components/Plots/Plot/Plot';
 import DatePicker from 'react-date-picker';
 import Button from 'react-bootstrap/Button';
@@ -17,13 +17,6 @@ class History extends Component {
             toDateStart: new Date('2018-01-01'),
         }
     }
-
-    componentWillMount() {
-        console.log('Will Mount');
-        let query = `/history?start_at=2013-01-01&end_at=2019-12-28&symbols=PLN`;
-        this.getData(query);
-    }
-
 
     prepareData = () => {
         let data = { ...this.state.rates };
@@ -99,8 +92,8 @@ class History extends Component {
             let boulinger = this.getBoulingerValue(i, sorted);
             const withBoulinger = {
                 ...obj,
-                topBouli: obj.sma + k * boulinger,
-                botBouli: obj.sma - k * boulinger,
+                topBouli: Math.round((obj.sma + k * boulinger) * 1000) / 1000,
+                botBouli: Math.round((obj.sma - k * boulinger) * 1000) / 1000,
             }
             dataWithBoulinger.push(withBoulinger);
         }
@@ -183,22 +176,23 @@ class History extends Component {
 
     render() {
         return (
-            <div>
+            <div className={"History"}>
                 <h1>History</h1>
-                Od:
-                <DatePicker
-                    value={this.state.fromDateStart}
-                    onChange={this.handleFromDateChange}
-                />
-                <DatePicker
-                    value={this.state.toDateStart}
-                    onChange={this.handleToDateChange}
-                />
+                <div>
+                    <DatePicker
+                        value={this.state.fromDateStart}
+                        onChange={this.handleFromDateChange}
+                    />
+                    <DatePicker
+                        value={this.state.toDateStart}
+                        onChange={this.handleToDateChange}
+                    />
+                </div>
                 <Button
                     size="lg"
                     onClick={this.buttonClicked}
                 >Pobierz</Button>
-                <Plot data={this.state.data} />
+                <Plot data={this.state.data} height={350} width={700}/>
             </div>
         )
     }
