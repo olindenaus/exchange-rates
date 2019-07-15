@@ -1,5 +1,5 @@
 import React from 'react';
-import { faArrowLeft, faArrowRight, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight, faArrowUp, faArrowDown} from '@fortawesome/free-solid-svg-icons';
 import './TransferPanel.css';
 import Button from '../UI/Button/Button';
 import Media from 'react-media';

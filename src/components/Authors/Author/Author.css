@@ -1,0 +1,43 @@
+.Author {
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    max-width: 50%;
+    padding: 6px;
+    background-color: rgb(98, 97, 138);
+    color: rgb(58, 52, 52);
+    box-shadow: 5px 9px 20px rgb(25, 31, 32);
+}
+
+.Credentials {
+    display: flex;
+    background: burlywood;
+    border-radius: 5px;
+    flex-direction: column;
+    min-width: 50%;
+    align-items: flex-start;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.AuthorInfo {
+    display: flex;
+    padding: 6px;
+    border-radius: 5px;
+    background: burlywood;
+}
+
+.AuthorImage {
+    min-width: 150px;
+    min-height: 100%;
+}
+
+
+.AuthorData {
+    border-left: solid 3px rgb(58, 52, 52);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    flex: 1;
+}
