@@ -3,3 +3,10 @@
     align-items: center;
     justify-content: space-around;
    }
+
+@media (max-width: 520px) {
+   .Home {
+       display: flex;
+       flex-direction: column;
+   }
+}
