@@ -1,12 +1,11 @@
-
 .About{
     color: honeydew;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     min-height: 100%;
     align-items: center;
-
+    flex: 1;
 }
 
 .Description{

@@ -1,0 +1,29 @@
+.Panel {
+    border: 2px salmon solid;
+    background-color: rgb(63, 52, 52);
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    box-shadow: 3px 3px 10px rgb(20, 18, 18);
+    align-items: center;
+}
+
+.Dates {
+    display: flex;
+}
+
+.Dateblock {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.DatePicker {
+    color: black;
+    background-color: white;
+}
+
+.Inputs {
+    max-width: 50%;
+}

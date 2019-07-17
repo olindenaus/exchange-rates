@@ -7,14 +7,14 @@ const block = (props) => {
         return (
             <div className="Block">
                 <Input
-                    label="Wybierz walutę:"
+                    label="Select currency:"
                     elementType="select"
                     options={props.options}
                     changed={props.currencyChanged}
                     value={props.currencyCode}>
                 </Input>
                 <Input 
-                    label="Wartość:" 
+                    label="Amount:" 
                     elementType="input"
                     changed={props.currencyValueChanged}
                     value={props.ammount}>

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import axios from '../../config/Axios';
 import './History.css';
 import Plot from '../../components/Plots/Plot/Plot';
-import DatePicker from 'react-date-picker';
-import Button from 'react-bootstrap/Button';
+import DownloadPanel from '../../components/DownloadPanel/DownloadPanel';
 
 class History extends Component {
     constructor(props) {
@@ -134,14 +133,6 @@ class History extends Component {
         }
     }
 
-    handleFromDateChange = (date) => {
-        this.setState({ fromDateStart: date })
-    }
-
-    handleToDateChange = (date) => {
-        this.setState({ toDateStart: date })
-    }
-
     buttonClicked = () => {
         let startDate = this.state.fromDateStart;
         let endDate = this.state.toDateStart;
@@ -174,25 +165,29 @@ class History extends Component {
         return month;
     }
 
+    handleFromDateChange = (date) => {
+        this.setState({ fromDateStart: date })
+    }
+
+    handleToDateChange = (date) => {
+        this.setState({ toDateStart: date })
+    }
+
+
     render() {
         return (
             <div className={"History"}>
                 <h1>History</h1>
-                <div>
-                    <DatePicker
-                        value={this.state.fromDateStart}
-                        onChange={this.handleFromDateChange}
-                    />
-                    <DatePicker
-                        value={this.state.toDateStart}
-                        onChange={this.handleToDateChange}
-                    />
+                <DownloadPanel
+                    toDateStart={this.state.toDateStart}
+                    fromDateStart={this.state.fromDateStart}
+                    toDateChanged={this.handleToDateChange}
+                    fromDateChanged={this.handleFromDateChange}
+                    buttonClicked={this.buttonClicked}
+                />
+                <div className="Plot">
+                    <Plot data={this.state.data} height={350} width={700} />
                 </div>
-                <Button
-                    size="lg"
-                    onClick={this.buttonClicked}
-                >Pobierz</Button>
-                <Plot data={this.state.data} height={350} width={700}/>
             </div>
         )
     }

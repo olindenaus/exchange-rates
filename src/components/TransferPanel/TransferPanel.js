@@ -8,8 +8,8 @@ const transferPanel = (props) => {
 
     let computer = (firstIcon, secondIcon) => (
         <React.Fragment>
-            <Button text="Przelicz" icon={firstIcon} clicked={props.leftToRight} />
-            <Button text="Przelicz" icon={secondIcon} clicked={props.rightToLeft} />
+            <Button text="Calculate" icon={firstIcon} clicked={props.leftToRight} />
+            <Button text="Calculate" icon={secondIcon} clicked={props.rightToLeft} />
         </React.Fragment>
     );
 
