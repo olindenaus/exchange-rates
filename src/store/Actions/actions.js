@@ -1,10 +1,24 @@
-import {ADD_OPTIONS} from '../Actions/actionTypes';
+import *  as actionTypes from '../Actions/actionTypes';
 
-export const addOptions = (options) =>{
-    console.log('to z akcji', options);
+export const addOptions = (options) => {
     return {
-        type: ADD_OPTIONS,
+        type: actionTypes.ADD_OPTIONS,
         options: options
     }
 }
 
+export const setRightBlockCurrency = (option) => {
+    console.log('set right');
+    return {
+        type: actionTypes.SET_RIGHT_BLOCK_CURRENCY,
+        value: option
+    }
+}
+
+export const setLeftBlockCurrency = (option) => {
+    console.log('set left');
+    return {
+        type: actionTypes.SET_LEFT_BLOCK_CURRENCY,
+        value: option
+    }
+}

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import './Home.css';
 
-import { addOptions } from '../../store/Actions/actions'
+import * as actions from '../../store/Actions/actions'
 
 import axios from '../../config/Axios';
 import Block from '../Block/Block';
@@ -30,7 +30,7 @@ class Home extends Component {
                 tempOptions.push('EUR');
                 this.getSpecific('EUR');
 
-                this.props.OnCurenciesOptionsFetch(tempOptions);
+                this.props.onCurenciesOptionsFetch(tempOptions);
 
                 this.setState({cachedData: result.data.rates });
             }).catch(error => {
@@ -64,16 +64,18 @@ class Home extends Component {
 
     leftSelect = (event) => {
         let value = event.target.value;
-        this.setState({ leftBlockCurrency: value });
+        // this.setState({ leftBlockCurrency: value });
+        this.props.onLeftCurrencyChanged(value);
         this.getSpecific(value);
     }
 
     rightSelect = (event) => {
-        this.setState({ rightBlockCurrency: event.target.value });
+        // this.setState({ rightBlockCurrency: event.target.value });
+        this.props.onRightCurrencyChanged(event.target.value);
     }
 
     calculateLeftToRight = () => {
-        let rightCurrency = this.state.rightBlockCurrency;
+        let rightCurrency = this.props.rightCurrency;
         let rates = this.state.cachedData;
         let rate = rates[rightCurrency];
         let result = this.state.leftBlockAmmount * rate;
@@ -82,7 +84,7 @@ class Home extends Component {
     }
 
     calculateRightToLeft = () => {
-        let rightCurrency = this.state.rightBlockCurrency;
+        let rightCurrency = this.props.rightCurrency;
         let rates = this.state.cachedData;
         let rate = 1 / rates[rightCurrency];
         let result = this.state.rightBlockAmmount * rate;
@@ -113,7 +115,7 @@ class Home extends Component {
                             currencyChanged={this.leftSelect}
                             currencyValueChanged={this.leftBlockCurrencyValueUpdate}
                             ammount={this.state.leftBlockAmmount}
-                            currencyCode={this.state.leftBlockCurrency}
+                            currencyCode={this.props.leftCurrency}
                         />
                         <TransferPanel
                             leftToRight={this.calculateLeftToRight}
@@ -125,7 +127,7 @@ class Home extends Component {
                             currencyChanged={this.rightSelect}
                             currencyValueChanged={this.rightBlockCurrencyValueUpdate}
                             ammount={this.state.rightBlockAmmount}
-                            currencyCode={this.state.rightBlockCurrency}
+                            currencyCode={this.props.rightCurrency}
                         />
                     </div>
                 </React.Fragment>
@@ -139,12 +141,16 @@ class Home extends Component {
 const mapStateToProps = state => {
     return {
         opt: state.options,
+        rightCurrency: state.rightBlockCurrency,
+        leftCurrency: state.leftBlockCurrency,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        OnCurenciesOptionsFetch: (options) => dispatch(addOptions(options)),
+        onCurenciesOptionsFetch: (options) => dispatch(actions.addOptions(options)),
+        onLeftCurrencyChanged: (optionValue) => dispatch(actions.setLeftBlockCurrency(optionValue)),
+        onRightCurrencyChanged: (optionValue) => dispatch(actions.setRightBlockCurrency(optionValue)),
     }
 }
 

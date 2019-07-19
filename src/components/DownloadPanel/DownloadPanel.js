@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../store/Actions/actions';
 import DatePicker from 'react-date-picker';
 import Button from 'react-bootstrap/Button';
 import Input from '../UI/Input/Input';
@@ -31,16 +33,16 @@ const downloadPanel = (props) => {
                 <Input
                     label="Value of:"
                     elementType="select"
-                    changed={null}
+                    changed={(e) => props.onLeftCurrencyChanged(e.target.value)}
                     options={props.currencyOptions}
-                    value={null}>
+                    value={props.upperCurrency}>
                 </Input>
                 <Input
                     label="In respect to:"
                     elementType="select"
                     options={props.currencyOptions}
-                    changed={null}
-                    value={null}>
+                    changed={(e) => props.onRightCurrencyChanged(e.target.value)}
+                    value={props.lowerCurrency}>
                 </Input>
             </div>
             <Button
@@ -50,4 +52,19 @@ const downloadPanel = (props) => {
         </div>
     )
 };
-export default downloadPanel;
+
+const mapStateToProps = state => {
+    return {
+        upperCurrency: state.leftBlockCurrency,
+        lowerCurrency: state.rightBlockCurrency
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onLeftCurrencyChanged: (optionValue) => dispatch(actions.setLeftBlockCurrency(optionValue)),
+        onRightCurrencyChanged: (optionValue) => dispatch(actions.setRightBlockCurrency(optionValue)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(downloadPanel);

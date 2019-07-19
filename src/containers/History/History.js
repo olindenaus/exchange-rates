@@ -218,6 +218,8 @@ class History extends Component {
 const mapStateToProps = state => {
     return {
         opt: state.options,
+        upperCurrency: state.leftBlockCurrency,
+        lowerCurrency: state.rightBlockCurrency
     }
 }
 
