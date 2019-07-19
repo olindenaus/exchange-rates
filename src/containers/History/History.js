@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../../config/Axios';
+import { Form } from 'react-bootstrap';
 import './History.css';
 import Plot from '../../components/Plots/Plot/Plot';
 import DownloadPanel from '../../components/DownloadPanel/DownloadPanel';
@@ -14,6 +15,8 @@ class History extends Component {
             date: { from: '', to: '' },
             fromDateStart: new Date('2017-01-01'),
             toDateStart: new Date('2018-01-01'),
+            smaVisibility: false,
+            bbVisiblity: false
         }
     }
 
@@ -173,6 +176,14 @@ class History extends Component {
         this.setState({ toDateStart: date })
     }
 
+    setSMADisplay = (isSMADisplayed) => {
+        this.setState({ smaVisibility: isSMADisplayed });
+    }
+
+    setBBDisplay = (isBBDisplayed) => {
+        this.setState({ bbVisiblity: isBBDisplayed });
+    }
+
 
     render() {
         return (
@@ -186,7 +197,14 @@ class History extends Component {
                     buttonClicked={this.buttonClicked}
                 />
                 <div className="Plot">
-                    <Plot data={this.state.data} height={350} width={700} />
+                    <Plot data={this.state.data} SMAEnable={this.state.smaVisibility}
+                          BBEnable={this.state.bbVisiblity} height={350} width={700} />
+                    <div className="PlotOptions">
+                       
+                            <Form.Check label="SMA" onChange={e => this.setSMADisplay(e.target.checked)} />
+                            <Form.Check label="Bollinger bands" onChange={e => this.setBBDisplay(e.target.checked)} />
+                        
+                    </div>
                 </div>
             </div>
         )
