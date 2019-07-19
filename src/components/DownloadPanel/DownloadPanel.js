@@ -7,8 +7,6 @@ import './DownloadPanel.css';
 
 const downloadPanel = (props) => {
 
-    const options = ['EUR', 'PLN'];
-
     return (
         <div className="Panel">
             <div className="Dates">
@@ -34,13 +32,13 @@ const downloadPanel = (props) => {
                     label="Value of:"
                     elementType="select"
                     changed={null}
-                    options={options}
+                    options={props.currencyOptions}
                     value={null}>
                 </Input>
                 <Input
                     label="In respect to:"
                     elementType="select"
-                    options={options}
+                    options={props.currencyOptions}
                     changed={null}
                     value={null}>
                 </Input>

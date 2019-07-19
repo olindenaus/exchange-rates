@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import axios from '../../config/Axios';
+import {connect} from 'react-redux';
 import { Form } from 'react-bootstrap';
+
 import './History.css';
+
+import axios from '../../config/Axios';
 import Plot from '../../components/Plots/Plot/Plot';
 import DownloadPanel from '../../components/DownloadPanel/DownloadPanel';
 
@@ -195,6 +198,7 @@ class History extends Component {
                     toDateChanged={this.handleToDateChange}
                     fromDateChanged={this.handleFromDateChange}
                     buttonClicked={this.buttonClicked}
+                    currencyOptions={this.props.opt}
                 />
                 <div className="Plot">
                     <Plot data={this.state.data} SMAEnable={this.state.smaVisibility}
@@ -211,4 +215,10 @@ class History extends Component {
     }
 }
 
-export default History;
+const mapStateToProps = state => {
+    return {
+        opt: state.options,
+    }
+}
+
+export default connect(mapStateToProps)(History);
