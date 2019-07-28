@@ -8,13 +8,13 @@ const navigation = (props) => {
 
     return (
             <div className="Navigation">
-                <NavLink to='/'>
+                <NavLink activeClassName='ActiveNav' exact to='/'>
                     <NavigationLink>Home</NavigationLink>
                 </NavLink>
-                <NavLink to='/about'>
+                <NavLink activeClassName='ActiveNav' exact to='/about'>
                     <NavigationLink>About</NavigationLink>
                 </NavLink>
-                <NavLink to='/history'>
+                <NavLink activeClassName='ActiveNav' exact to='/history'>
                     <NavigationLink>History</NavigationLink>
                 </NavLink>
             </div>
