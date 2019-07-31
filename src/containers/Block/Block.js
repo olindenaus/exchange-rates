@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Input from '../../components/UI/Input/Input';
 import './Block.css';

@@ -109,7 +109,7 @@ class History extends Component {
         const smaSamples = 20;
         let dev = 0;
         let endIndex = parseInt(index) + parseInt(smaSamples);
-        let sma = data[index].sma;
+        
         if (endIndex < data.length) {
             for (let i = 0; i < smaSamples; i++) {
                 let j = parseInt(index) + parseInt(i);
