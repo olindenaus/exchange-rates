@@ -2,3 +2,10 @@
     display: flex;
     justify-content: space-around;
 }
+
+@media (max-width: 520px) {
+    .Authors {
+        flex-direction: column;
+        align-items: center;
+    }
+}

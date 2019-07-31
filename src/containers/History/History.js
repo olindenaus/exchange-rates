@@ -28,7 +28,7 @@ class History extends Component {
         let plotData = [];
         for (var date in data) {
             var obj = data[date];
-            const formatedData = { name: date, value: obj["PLN"] };
+            const formatedData = { name: date, value: obj[this.props.lowerCurrency] };
             plotData.push(formatedData);
         }
         let sorted = this.sortData(plotData);
@@ -135,6 +135,7 @@ class History extends Component {
                 .then(result => {
                     this.setState({ rates: result.data.rates, query: query });
                     this.prepareData();
+                    console.log(result);
                 });
         }
     }
@@ -144,7 +145,9 @@ class History extends Component {
         let endDate = this.state.toDateStart;
         startDate = this.getDate(startDate);
         endDate = this.getDate(endDate);
-        let query = `/history?start_at=${startDate}&end_at=${endDate}&symbols=PLN`;
+        let query = `/history?start_at=${startDate}&end_at=${endDate}&base=${this.props.upperCurrency}&symbols=${this.props.lowerCurrency}`;
+        console.log(query);
+        
         this.getData(query);
     }
 
