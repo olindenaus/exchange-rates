@@ -14,3 +14,10 @@
     color: brown;
     background-color: rgb(202, 188, 170);
 }
+
+@media (max-width: 520px) {
+    .NavigationLink {
+        font-size: 0.6em;
+        min-width: 50px;
+    }
+}

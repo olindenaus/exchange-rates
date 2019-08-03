@@ -1,13 +1,14 @@
 .Block {
     background-color: rgb(150, 136, 118);
-    height: 300px;
+    max-height: 300px;
+    padding: 20px 0 32px 0;
     margin: 10px;
     flex: 1;
     max-width: 600px;
     border-radius: 15px;
+    color: #212529;
     box-shadow: 0 5px 5px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-around;
 }
@@ -15,5 +16,7 @@
 @media (max-width: 520px) {
     .Block {
         min-width: 55vw;
+        flex-direction: column;
+        padding: 0;
     }
 }

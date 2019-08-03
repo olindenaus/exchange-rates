@@ -10,6 +10,7 @@ const input = (props) => {
         case ('input'):
             inputElement = <input
                 type='number'
+                className={'Number'}
                 onChange={props.changed}
                 value={props.value}>
             </input>
@@ -17,10 +18,10 @@ const input = (props) => {
         case ('select'):
             inputElement = (<select 
                 value={props.value}
-                // className={}
-                onChange={props.changed}>{
-                    options.map(option => (
-                    <option key={option} value={option}>
+                className={'Number'}
+                onChange={props.changed}>{                    
+                    options.map(option => (                        
+                    <option key={option} value={option}>                        
                         {option}
                     </option>
                 ))

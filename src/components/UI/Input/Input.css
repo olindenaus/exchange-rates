@@ -3,9 +3,26 @@
     flex-direction: column;
     box-sizing: border-box;
     padding: 10px;
-    min-width: 150px;
+    min-width: 100px;
+    align-items: center;
+}
+
+.Select {
+    max-width: 75px;
+    border-radius: 5px;
+    padding: 0 5px;
 }
 
 .Label {
     font-weight: bold;
+}
+
+.Number {
+    max-width: 75px;
+    border-radius: 5px;
+    padding: 0 5px;
+}
+
+@media (min-width: 520px) {
+
 }
