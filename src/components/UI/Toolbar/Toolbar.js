@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Toolbar.css';
 import Media from 'react-media';
 
 import Logo from '../../Logo/Logo';
 import Navigation from '../../Navigation/Navigation';
+import Burger from '../Burger/Burger';
+
 const toolbar = () => {
+    const [show, changeShow] = useState(false);
+
     return (
         <div className="Toolbar">
-            <Media query="(max-width: 520px)">
-                {matches =>
-                    matches ? <Logo height={45} />
-                        : <Logo height={60} />
-                }
-            </Media>
-            <Navigation />
+            <Logo height={60} />
+            {show ? <Navigation /> : null}
+            <Burger clicked={() => changeShow(!show)}/>
         </div>
     )
 };

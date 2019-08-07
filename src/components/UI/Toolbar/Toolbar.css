@@ -9,7 +9,7 @@
 
 @media (max-width: 520px) {
     .Toolbar {
-        padding: 0px;
-        
+        padding: 0px;                
+        height: 60px;
     }
 }

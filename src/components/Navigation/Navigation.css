@@ -9,3 +9,19 @@
     color: brown;
     background-color: rgb(211, 202, 190);
 }
+
+@media (max-width: 520px) {
+    .Navigation {
+        position: absolute;
+        z-index: 2;
+        background-color: antiquewhite;
+        border-radius: 5px;
+        top: 60px;
+        box-sizing: border-box;
+        right: 0;
+        border-bottom: 1px solid green;
+        border-left: 1px solid green;
+        width: 80vw;
+        flex-direction: column;
+    }
+}
