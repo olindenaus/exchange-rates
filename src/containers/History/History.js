@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { Form } from 'react-bootstrap';
+import Media from 'react-media';
 
 import './History.css';
 
@@ -109,7 +110,7 @@ class History extends Component {
         const smaSamples = 20;
         let dev = 0;
         let endIndex = parseInt(index) + parseInt(smaSamples);
-        
+
         if (endIndex < data.length) {
             for (let i = 0; i < smaSamples; i++) {
                 let j = parseInt(index) + parseInt(i);
@@ -147,7 +148,7 @@ class History extends Component {
         endDate = this.getDate(endDate);
         let query = `/history?start_at=${startDate}&end_at=${endDate}&base=${this.props.upperCurrency}&symbols=${this.props.lowerCurrency}`;
         console.log(query);
-        
+
         this.getData(query);
     }
 
@@ -190,6 +191,13 @@ class History extends Component {
         this.setState({ bbVisiblity: isBBDisplayed });
     }
 
+    responisblePlot = (width, height) => {
+        console.log(width, height);
+        return (
+            <Plot data={this.state.data} SMAEnable={this.state.smaVisibility}
+                BBEnable={this.state.bbVisiblity} height={height} width={width} />
+        );
+    }
 
     render() {
         return (
@@ -204,13 +212,18 @@ class History extends Component {
                     currencyOptions={this.props.opt}
                 />
                 <div className="Plot">
-                    <Plot data={this.state.data} SMAEnable={this.state.smaVisibility}
-                          BBEnable={this.state.bbVisiblity} height={350} width={700} />
+                    <Media query="(max-width: 520px)">
+                        {matches =>
+                            matches ? this.responisblePlot(window.innerWidth * 0.7, 350)
+                                : this.responisblePlot(700, 350)
+                        }
+                    </Media>
+
                     <div className="PlotOptions">
-                       
-                            <Form.Check label="SMA" onChange={e => this.setSMADisplay(e.target.checked)} />
-                            <Form.Check label="Bollinger bands" onChange={e => this.setBBDisplay(e.target.checked)} />
-                        
+
+                        <Form.Check label="SMA" onChange={e => this.setSMADisplay(e.target.checked)} />
+                        <Form.Check label="Bollinger bands" onChange={e => this.setBBDisplay(e.target.checked)} />
+
                     </div>
                 </div>
             </div>

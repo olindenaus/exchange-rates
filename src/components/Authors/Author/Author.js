@@ -9,8 +9,8 @@ const author = (props) => {
     return (
         <div className="Author">
             <div className="Credentials">
-                <h1>Name</h1>
-                <h1>Surname</h1>
+                <h3>Name</h3>
+                <h3>Surname</h3>
             </div>
             <div className="AuthorInfo">
                 <FontAwesomeIcon className="AuthorImage" icon={faIdBadge} />
@@ -19,7 +19,6 @@ const author = (props) => {
                     <li>Lorem ipsum: accusamus numquam.</li>
                     <li>Hobbys: {props.hobbys}</li>
                     <li>Technologies: {props.tech}</li>
-                    <li>OSTATNIO JADŁ: kaszankę z jagodami</li>
                 </ul>
             </div>
         </div>

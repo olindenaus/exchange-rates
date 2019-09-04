@@ -50,6 +50,7 @@ class Home extends Component {
 
     componentWillMount() {
         console.log('Will Mount');
+        console.log(window.innerHeight, window.innerWidth);
         this.getData();
     }
 
