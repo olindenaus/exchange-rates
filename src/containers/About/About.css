@@ -28,6 +28,7 @@
 }
 @media(max-width: 520px){
     .Description{
-        line-height: 1.66em;
-    }    
+        font-size: 0.8em;
+        flex: none;
+    }   
 }

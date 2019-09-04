@@ -14,12 +14,13 @@ const author = (props) => {
             </div>
             <div className="AuthorInfo">
                 <FontAwesomeIcon className="AuthorImage" icon={faIdBadge} />
-                <div className="AuthorData">
-                    <p>Age: {props.age}</p>
-                    <p>Lorem ipsum: accusamus numquam.</p>
-                    <p>Hobbys: {props.hobbys}</p>
-                    <p>Technologies: {props.tech}</p>
-                </div>
+                <ul className="AuthorData">
+                    <li>Age: {props.age}</li>
+                    <li>Lorem ipsum: accusamus numquam.</li>
+                    <li>Hobbys: {props.hobbys}</li>
+                    <li>Technologies: {props.tech}</li>
+                    <li>OSTATNIO JADŁ: kaszankę z jagodami</li>
+                </ul>
             </div>
         </div>
     );
