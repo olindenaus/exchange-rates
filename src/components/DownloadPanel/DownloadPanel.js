@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import Input from '../UI/Input/Input';
 import './DownloadPanel.css';
 
+import Media from 'react-media';
+
 
 const downloadPanel = (props) => {
 
@@ -45,10 +47,12 @@ const downloadPanel = (props) => {
                     value={props.lowerCurrency}>
                 </Input>
             </div>
-            <Button
-                size="lg"
-                onClick={props.buttonClicked}
-            >Fetch!</Button>
+            <Media query="(max-width: 520px)">
+                        {matches =>
+                            matches ? <Button size="sm" onClick={props.buttonClicked}>Fetch!</Button>
+                                : <Button size="lg" onClick={props.buttonClicked}>Feetch!</Button>
+                        }
+                    </Media>
         </div>
     )
 };

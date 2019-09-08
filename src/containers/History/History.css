@@ -39,6 +39,8 @@
     }
 
     .Plot{
+        display: none;
         flex-direction: column;
+        margin-top: 10px;
     }
  }

@@ -22,8 +22,30 @@
 .DatePicker {
     color: black;
     background-color: white;
+
 }
 
 .Inputs {
     max-width: 50%;
+}
+
+@media (max-width: 520px) {
+    .Inputs {
+        min-width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .Dateblock {
+        display: flex;
+    }
+
+    .react-date-picker__inputGroup {
+        min-width:0;
+    }
+
+    .DatePicker button{
+        margin: 0;
+        padding: 3px;
+    }
 }
