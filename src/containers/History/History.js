@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import Media from 'react-media';
+import { PDFDownloadLink } from '@react-pdf/renderer'
+
 
 import './History.css';
 
 import axios from '../../config/Axios';
 import Plot from '../../components/Plots/Plot/Plot';
 import DownloadPanel from '../../components/DownloadPanel/DownloadPanel';
+import Button from '../../components/UI/Button/Button';
+import PDFRates from '../../components/PDFRates/PDFRates';
 
 class History extends Component {
     constructor(props) {
@@ -220,12 +224,13 @@ class History extends Component {
                     </Media>
 
                     <div className="PlotOptions">
-
                         <Form.Check label="SMA" onChange={e => this.setSMADisplay(e.target.checked)} />
                         <Form.Check label="Bollinger bands" onChange={e => this.setBBDisplay(e.target.checked)} />
-
                     </div>
                 </div>
+                <PDFDownloadLink document={<PDFRates propa={this.state.rates} propb={this.state.data} />} fileName="somename.pdf">
+                    {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+                </PDFDownloadLink>
             </div>
         )
     }

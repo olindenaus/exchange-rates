@@ -47,7 +47,7 @@
     }
 
     .PlotOptions {
-        display:none;
+        align-items: center;
     }
 
     .History h1 {
