@@ -214,7 +214,7 @@ class History extends Component {
                 <div className="Plot">
                     <Media query="(max-width: 520px)">
                         {matches =>
-                            matches ? this.responisblePlot(window.innerWidth * 0.7, 350)
+                            matches ? this.responisblePlot(window.innerWidth, 350)
                                 : this.responisblePlot(700, 350)
                         }
                     </Media>
