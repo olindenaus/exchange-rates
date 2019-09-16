@@ -228,7 +228,7 @@ class History extends Component {
                         <Form.Check label="Bollinger bands" onChange={e => this.setBBDisplay(e.target.checked)} />
                     </div>
                 </div>
-                <PDFDownloadLink document={<PDFRates propa={this.state.rates} propb={this.state.data} />} fileName="somename.pdf">
+                <PDFDownloadLink document={<PDFRates upperCur={this.props.upperCurrency} lowerCur={this.props.lowerCurrency} data={this.state.data} />} fileName="somename.pdf">
                     {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
                 </PDFDownloadLink>
             </div>

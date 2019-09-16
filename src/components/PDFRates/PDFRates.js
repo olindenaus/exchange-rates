@@ -5,7 +5,7 @@ import { faColumns } from '@fortawesome/free-solid-svg-icons';
 
 const styles = StyleSheet.styles = ({
     page: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         margin: 10,
         backgroundColor: '#E4E4E4'
     },
@@ -13,6 +13,14 @@ const styles = StyleSheet.styles = ({
         margin: 10,
         padding: 10,
         flexGrow: 1
+    },
+    header: {
+        marginBottom: 20,
+        textAlign: 'center'
+    }, 
+    title: {
+        fontSize: 24,
+        textAlign: 'center',
     }
 })
 
@@ -21,24 +29,24 @@ export default class PDFRates extends Component {
         super(props);
     }
 
-
-
     render() {
-        // const ratesTable = this.props.rates.map((id)=>{
-        //     return <Text><
-        // });
-        console.log(this.props.propa);
-        console.log(this.props.propb);
+        const ratesTable = this.props.data.map((rate)=>{
+            return <Text key={rate.name}>{rate.name} --->>> {rate.value}</Text>
+        });
+        
 
         return (
             <Document >
                 <Page size="A4" style={styles.page}>
+                    <Text style={styles.header} fixed>
+                        ~ Created with react-pdf ~
+                    </Text>
+                    <Text style={styles.title} >
+                        {`${this.props.upperCur} price against ${this.props.lowerCur}`}
+                    </Text>
+                    <Text style={styles.title}></Text>
                     <View>
-                        <Text>jakis losowy tekst</Text>
-                        <Text>jakis losowy tekst</Text>
-                        <Text>jakis losowy tekst</Text>
-                        <Text>jakis losowy tekst</Text>
-                        <Text>jakis losowy tekst</Text>
+                        {ratesTable}
                     </View>
                 </Page>
             </Document>
